@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD AJAX API FETCH</title>
+  </head>
+  <body>
+    <section>
+      <!-- Form -->
+      <h1>CRUD AJAX API FETCH</h1>
+      <article>
+        <h2 class="crud-title">Agregar VideoJuego</h2>
+        <form class="crud-form">
+          <input
+            type="text"
+            placeholder="Videojuego"
+            name="videogame"
+            required
+          />
+          <br />
+          <input type="text" name="because" placeholder="Debido" required />
+          <input type="submit" value="Subir" />
+          <input type="hidden" name="id" />
+        </form>
+      </article>
+      <!-- Table -->
+      <article>
+        <h2>Ver VideoJuegos</h2>
+        <table class="crud-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Debido</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </article>
+    </section>
+    <template class="crud-template">
+      <tr>
+        <td class="name"></td>
+        <td class="because"></td>
+        <td>
+          <button class="edit">Editar</button>
+          <button class="delete">Eliminar</button>
+        </td>
+      </tr>
+    </template>
+    <script>
+      const d = document,
+        $template = d.querySelector(".crud-template").content,
+        $table = d.querySelector(".crud-table"),
+        $form = d.querySelector(".crud-form"),
+        $title = d.querySelector(".crud-title"),
+        $fragment = d.createDocumentFragment();
+
+      //GET
+      const getAll = async () => {
+        try {
+          let res = await fetch("http://localhost:5555/videojuegos"),
+            json = await res.json();
+
+          if (!res.ok) throw { status: res.status, statusText: res.statusText };
+
+          console.log(json);
+
+          console.log(res.body);
+
+          json.forEach((el) => {
+            $template.querySelector(".name").textContent = el.nombre;
+            $template.querySelector(".because").textContent = el.debido;
+
+            $template.querySelector(".edit").dataset.name = el.nombre;
+            $template.querySelector(".edit").dataset.because = el.debido;
+            $template.querySelector(".edit").dataset.id = el.id;
+
+            $template.querySelector(".delete").dataset.name = el.nombre;
+            $template.querySelector(".delete").dataset.id = el.id;
+
+            let $node = d.importNode($template, true);
+            $fragment.appendChild($node);
+          });
+
+          d.querySelector("tbody").appendChild($fragment);
+        } catch (err) {
+          let message = err.statusText || "Ocurrio un Error";
+
+          $table.insertAdjacentHTML(
+            "afterend",
+            `<p><b>Error ${err.status}: ${message}</b></p>`
+          );
+        }
+      };
+
+      d.addEventListener("DOMContentLoaded", getAll);
+
+      d.addEventListener("submit", async (e) => {
+        if (e.target === $form) {
+          e.preventDefault();
+
+          if (!e.target.id.value) {
+            //POST
+            try {
+              let options = {
+                  method: "POST",
+                  headers: {
+                    "Content-type": "application/json; charset=utf-8",
+                  },
+                  body: JSON.stringify({
+                    nombre: e.target.videogame.value,
+                    debido: e.target.because.value,
+                  }),
+                },
+                res = await fetch("http://localhost:5555/videojuegos", options),
+                json = await res.json();
+
+              if (!res.ok)
+                throw { status: res.status, statusText: res.statusText };
+
+              location.reload();
+            } catch (err) {
+              let message = err.statusText || "Ocurrio un Error";
+
+              $form.insertAdjacentHTML(
+                "afterend",
+                `
+              <p><b>
+              Error ${err.status}: ${err.statusText}
+              </p></b>
+              `
+              );
+            }
+          } else {
+            //PUT
+            try {
+              let options = {
+                  method: "PUT",
+                  headers: {
+                    "Content-type": "application/json; charset=utf-8",
+                  },
+                  body: JSON.stringify({
+                    nombre: e.target.videogame.value,
+                    debido: e.target.because.value,
+                  }),
+                },
+                res = await fetch(
+                  `http://localhost:5555/videojuegos/${e.target.id.value}`,
+                  options
+                ),
+                json = await res.json();
+
+              if (!res.ok)
+                throw { status: res.status, statusText: res.statusText };
+
+              location.reload();
+            } catch (err) {
+              let message = err.statusText || "Ocurrio un Error";
+
+              $form.insertAdjacentHTML(
+                "afterend",
+                `
+            <p><b>
+              Error ${err.status}: ${message}
+            </p></b>
+            `
+              );
+            }
+          }
+        }
+      });
+
+      d.addEventListener("click", async (e) => {
+        if (e.target.matches(".edit")) {
+          let $trs = $table.querySelectorAll("td");
+          console.log($trs);
+          $trs.forEach((el) => {
+            if (el.textContent === e.target.dataset.name) {
+              console.log("hola");
+              el.style.backgroundColor = "thistle";
+            }
+            if (el.textContent === e.target.dataset.because) {
+              console.log("miau");
+              el.style.backgroundColor = "thistle";
+            }
+          });
+          $form.videogame.value = e.target.dataset.name;
+          $form.because.value = e.target.dataset.because;
+          $form.id.value = e.target.dataset.id;
+
+          $title.textContent = "Editar videojuego";
+          $title.style.setProperty("background-color", "thistle");
+          $title.style.setProperty("display", "inline-block");
+
+          /* if (on) {
+            regex =
+              /^(${e.target.dataset.name}) + (${e.target.dataset.because}) $/gi
+                .exec;
+
+            let tr = $table.querySelectorAll("tr");
+
+            if (tr.regex) {
+            }
+          } */
+        }
+
+        if (e.target.matches(".delete")) {
+          let con = confirm(
+            `Estas seguro de eliminar "${e.target.dataset.name}" con el ID ${e.target.dataset.id}`
+          );
+
+          if (con) {
+            try {
+              let options = {
+                  method: "DELETE",
+                  headers: {
+                    "Content-type": "application/json; charset=utf-8",
+                  },
+                },
+                res = await fetch(
+                  `http://localhost:5555/videojuegos/${e.target.dataset.id}`,
+                  options
+                ),
+                json = res.json();
+              location.reload();
+
+              if (!res.ok)
+                throw { status: res.status, statusText: res.statusText };
+            } catch (err) {
+              let message = err.statusText || "Ocurrio un Error";
+
+              alert(`Error ${err.status}: ${message}`);
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

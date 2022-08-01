@@ -1,0 +1,894 @@
+<html>
+    <head>
+<Title> Nuevos Tipos de Datos en JavaScript</Title>    
+</head>
+    <body>
+        <h1>Nuevos Tipos de Datos en JavaScript</h1>
+        <h1>YYYY this en JavaScript</h1>
+        <h1> No, JSON (JavaScript Object Notation)</h1> 
+<script>
+//Symbol
+/*
+Symbol es un tipo de dato primitivo, una vez que creamos un Symbol
+su valor se va a mantener privado para uso interno, usualmente se
+usa para nombrar caracteristicas para objetos de manera privada
+
+Una ventaja de usar el constructor Symbol, es que vamos a crear un 
+identificador unico llamados identificadores de referencia*/
+/* 
+let id = Symbol("id"); //Los simbolos como descripcion numeros y cadenas
+let id2 = Symbol("id2")
+
+console.log(id === id2);
+console.log(id, id2); //Cuando mandas a imprimir un Symbol, este se mandara a imprimir junto a su identificador como una cadena de texto
+console.log(typeof id, typeof id2);
+
+//Una buena practica y correcta escritura de sintaxis seria con constantes
+
+const NAME = Symbol("nombre"); //Lo que va de descripcion, literalmente es eso (obviamente si le agregas un valor xd)
+const SALUDAR = Symbol("saludar");
+
+const PERSONA = {
+[NAME]: "Tai"  //Para agregar valor a un Symbol se necesita usar notacion de corchetes
+}; 
+
+console.log(PERSONA);
+
+PERSONA.NAME = "Tairitsu Dmc";
+console.log(PERSONA.NAME);
+console.log(PERSONA[NAME]);   //Esto por asi decirlo, es una propiedad privada, obviamente para ocultar valores
+
+PERSONA[SALUDAR] = function () {
+console.log("hola, mi nombre es ",PERSONA[NAME] );
+};
+
+console.log(PERSONA);
+PERSONA[SALUDAR]();   //Una ejecucion de un metodo en un Symbol con una concatenacion de un Symbol wtfff
+
+for (let propiedad in PERSONA) {
+   console.log(propiedad);
+   console.log(PERSONA[propiedad]);
+}
+
+//Como listar las propiedades de un Symbol? (por que no se puede con un ciclo, por la razon de que son propiedades privadas xd)
+
+//Con el metodo constructot Object.
+
+console.log(Object.getOwnPropertySymbols(PERSONA));
+
+//Conclusion, la mayoria de el uso de los simbolos es para crear elementos privados dentro de un objeto y sus referencias serian unicas  
+ */
+
+
+
+ //SET
+ 
+ /*
+ Segun yo, un Set es una coleccion de datos unicos (por que unicos?, si hay datos duplicados en este solo se validara uno de cada x duplicados),
+  p.e: estos datos cuando los mandas a la consola solo se imprimira uno de cada de esos datos
+ duplicados (eso hasta ahora?)
+ */
+
+ //Esto simplemente es una estructura de datos similar a un Array pero con datos unicos(no replicaos) enserio que no le encuentro mucha utilidad ahora xd, cierto esto es escrito el 8 de mayo del 2022
+
+/* 
+const set = new Set([1,2,3,3,4,false, false, true, "hola", "HOLA", NaN, [], [], {}]);
+
+console.log(set);
+console.log(set.size); //Acá para sacar la longitud de un arreglo se hace con .size, no como normalmente lo hacemos con .length (según pq es un Set)
+
+
+const set2 = new Set;
+
+set2.add(1);   //Para agregar un valor a Set, lo tendrías que hacer con .add()
+set2.add(1);
+set2.add(2);
+set2.add(3);
+set2.add(false);
+set2.add(false);
+set2.add({});
+set2.add("HOla");
+set2.add("HOla");
+set2.add("hola");
+
+
+console.log(set2);
+console.log(set2.size);
+
+console.warn("Recorriendo item de set");
+
+for (item of set){
+    console.log(item);
+}
+
+
+console.warn("Recorriendo item de set2");
+
+//Nota, set es una nueva estructura de datos, que parece ser un Arreglo de datos unico, pero no. For each esta implementado para los Arreglos y los Set
+set2.forEach(item => console.log(item));
+
+
+
+//Acceder a un dato de un Set
+
+//console.log(set[0]);
+
+//Para poder acceder correctamente a un valor del arreglo de Set se usaria el dato "date.From"
+//Tendremos que convertir nuestro Set a un Arreglo con el Array.from
+
+console.warn("si");
+let arr = Array.from(set);
+console.log(arr);
+console.log(arr[0]);
+
+//Si se te antoja borrar un valor lo puedes hacer con el .delete();
+
+set.delete("hola");
+console.log(set);
+
+//Si estas de inseguro si es que tu Set no tiene un valor
+//Puedes usar .has();, si esto es verdadero devolvera true y si no es asi un false
+
+console.log(set.has(false));
+console.log(set.has("hola")); //Es una forma de validar si un dato existe dentro de un set sin tener que ir a otros metodos, como expresiones regulares, ciclos y demás.
+
+//Si es que quieres limpiar por completo tu Set, puedes usar el metodo .clear();, para que no andes borrando datos de uno a uno con .delete(); xd
+
+set2.clear();
+console.log(set2);
+
+console.log("Hola miau");
+ */
+
+
+
+
+
+ //MAP
+  /*
+Esto es similar a el Set, pero este si es un objeto ITERABLE y no tiene datos unicos (si se pueden repetir datos)
+En esto se pueden definir las llaves con cualquier cosa (segun yo)
+
+
+Map tiene un gran parecido con los objetos miau
+  */
+/* 
+ let mapa = new Map();   //Acá vamos a usar los metodos getters y setters vistos ya anteriormente miau
+mapa.set("nombre", "Tai"); //Al momento de obtener un nuevo valor (.get()), este necesitara una llave (primer parametro) y su valor (segundo parametro), este separado por una coma ",". 
+mapa.set("apellido", "Dmc");
+mapa.set("altura", 175);
+
+console.log(mapa);
+console.log(mapa.size); //Aquí obtenemos la longitud del Map, al igual como con lo de arriba 
+console.log(mapa.has("edad"));  //Aquí comprobamos si el Map contiene esa llave (obviamente no) yyyy es como lo de arriba ya explicado (Set)
+console.log(mapa.has("altura")); 
+
+console.warn(mapa.get("nombre"));
+mapa.set("nombre", "Tairitsu"); //Acá vamos a remplazar el valor de una llave, en este caso "Tai" por "Tairitsu"
+console.log(mapa.get("nombre")); //Aquí mandamos a imprimir solamente el valor de una llave utilizando el metodo .get(); para poder obtenerlo wtfff
+
+mapa.set(10,"diez");
+mapa.set(false,"falso");
+mapa.set({}, {});
+
+mapa.delete("apellido"); //Al igual como con el Set, aquí eliminamos una llave, actualizando esto con dos llaves y no tres
+console.log(mapa);
+
+for (let [key, value] of mapa) {
+    console.log(`Llave: ${key}, Valor: ${value}`);
+}
+
+//Otra forma de definir un Map
+const mapa2 = new Map ([
+["si", "miau"],
+["ola", "soy un gatito"],
+[false, "muy malo"]
+]);
+
+console.log(mapa2);
+//Si quieres obtener un solo valor del Map, puedes usar el ".keys()" para obtener las llaves yyyyy ".values()" para sus valores; lo puedes hacer junto a un spread operator p.e: 
+const llavesMapa2 = [...mapa2.keys()];
+const valoresMapa2 = [...mapa2.values()];
+
+console.log(llavesMapa2, valoresMapa2);
+ */
+
+
+ //WeakSets & WeakMaps
+
+
+
+ //WeakSets
+ /*
+ Esta es una especie de hermanos pequenos de los ya anteriores 
+ vistos Set & Map, por así decirlo Set y Map debil; esto 
+ significa que solo pueden almacenar llaves de tipo objeto, a esto
+ le permite al recolector de Js que en el momento que estos
+ tengan referencias debiles los (waekset y weakmap), al
+ momento en que estas referencias debiles ya no existan
+ estas se eliminaran para dar un mejor rendimiento de nuestra 
+ aplicacion u o sesion de nuestro navegador.
+ 
+ Los WeakSets y WeakMaps tienen carencias como: no se pueden iterar,
+tampoco podemos borrar todos los elementos de una (con el metodo .clear();),
+y tampoco no podemos identificar su tamano (.size();)
+
+
+Dato: estos solo aceptan referencias debiles al momento de agregar datos a ellos,
+ es decir Objetos u Objects para los Spanglish (tienen que ser objetos almacenados en una variable)
+ */
+
+
+
+// const ws = new WeakSet ([0,0,2,3,4,5, false,
+//  true, false, {}, {}, NaN]);   //Esto te arrojara un error de sintaxis  n     ola miau
+  //A diferencia de de los Set normales, los valores de WeakSet se deben de pasar uno a uno con el metedo(.add();).
+/* 
+const ws = new WeakSet();
+
+let valor1 = {"valor 1": 1}; // Valores en Objetos para posteriormente agregarlos al ws
+let valor2 = {"valor 2": 2};
+let valor3 = {"valor 3": 3};
+
+ws.add(valor3); //Agregamos
+ws.add(valor1);
+
+console.log(ws);
+
+console.log(ws.has(valor1)); //Verificamos
+console.log(ws.has(valor2));
+
+ws.delete(valor3); //Borramos
+ console.log(ws);
+
+ ws.add(valor2);
+ ws.add(valor3); //Agregamos y imprimimos
+ console.log(ws);
+
+
+
+//Una forma de limpiar el Weak sin usar el recolector de basura del navegador seria nulificando las referencias con su valor
+
+setInterval(() => console.log(ws), 1000);
+
+setTimeout (() => {
+valor1 =  null;
+valor2 = null;
+valor3 = null; 
+}, 5000)
+
+ */
+
+
+ //WeakMap
+ /*
+ es casi igual como arriba en el aspecto de .size(), .has(),
+  .delete(), ; esto es un objeto debil y solo puede aceptar
+  objetos almacenados en una variable, pero ahora seran llaves
+  y su valor va estar definido cuando lo agreguemos a el WeakMap
+  miau 
+ 
+ */
+/* 
+const wm = new WeakMap ();
+
+let llave1 = {};
+let llave2 = {};
+let llave3 = {};
+
+wm.set(llave1, "hola"); //Asignacion de valores
+wm.set(llave2, 5);
+console.log(wm);
+
+console.log(wm.has(llave1)); //Verificacion
+console.log(wm.has(llave3));
+console.log(wm.has("hola")); //Solo se pueden verificar por las llaves
+
+wm.set(llave2, "como etai nena?");
+console.log(wm.get(llave2)); //Si se pueden remplazar valores
+
+wm.set(llave3, "si");  //Asignar valor a wmMap "llave3"
+console.log(wm.get(llave3));
+
+wm.delete(llave3); //Borrar valor llave "llave3" de wmMap 
+console.log(wm.get(llave3)); //Comprobacion con un undefined
+
+wm.set(llave3, "extrano tu pumpum");
+
+setInterval (() => console.log(wm), 1000);
+
+setTimeout(() => {
+llave1 = null;
+llave2 = null;
+llave3 = null;
+
+}, 5000);      //Con esta clase estariamos complementando la anterior clase con sus hermanos menores ola miau
+ */
+ 
+
+
+ //Iterables & Iterators
+
+/*
+Esto se que lo hemos visto ya antes pero igual
+
+Un dato o tipo de dato es iterable, significa que es una estructura
+lineal que hace que sus elementos sean publicos y 
+se puedan recorrer, p.e: arreglos, strings, objetos.
+
+Y el Iterador & Iterator es el apuntador que se lo hace
+el mecanismo que esta recorriendo los elementos 
+por así decirlo. Y en base a eso podemos tener diferentes mecanismos
+para iterar el objeto iterable p.e: destructuracion, for of, for in,
+Array.from, spreadOperator, promesas? y uno que veremos a continuacion
+*/
+
+//const iterable = [1,2,3,4];
+//const iterable = new Set([1,1,1,2,3,4,5.5]);
+//const iterable = "Hola Mundo";
+//const iterable = new Map {[["nombre", "Tai"], ["apellido", "Dmc"]]};
+
+//const iterador = iterable[Symbol.iterator]();
+ /* Este seria nuestro 
+nuevo iterador definiendo nuestra variable a iterar, 
+despues dentro de unos corchetes introducimos el objeto 
+constructor "Symbol" junto a ".iterator" y finalmente 
+unos parentesis. Quedaria como el de arriba xd */
+
+//console.log(iterable);
+ //console.log(iterador);
+
+//console.log(iterador.next());  //Aca usamos el metodo ".next()" para hacer funcionar nuestro iterador de la forma correcta
+//Esto arrojara dos propiedades, la primera sera el valor de el iterable mientras que la segunda es un aviso (en done) de que si es que se ha acabado nuestro iterable (la longitud o sus datos) devolviendote un boolean
+//Arrojara, {value 1, done: false}
+ 
+// console.log(iterador.next());
+
+
+//Para no tener que recorrer los datos asi (quien lo haria asi?), podemos hacerlo con un ciclo xd wtff????
+/* 
+let next = iterador.next();
+
+while (!next.done) {
+  console.log(next.value);
+  next = iterador.next();  //Para que esto?, parecera confuso pero recuerda que para imprimir el siguente valor necesitas poner el iterador con el next. Pues esto hacemos pero con la variable next, le reasignamos el iterador con el next y se vuelve a imprimir hasta que la condicion se cumpla
+}
+
+ */
+
+
+
+
+ //Aplicando el coso este
+
+/* 
+ const iterable = "No es ahi";
+ const iterador = iterable[Symbol.iterator]();
+
+ console.log(iterable);
+ console.log(iterador);
+
+// console.log(iterador.next());   //next es un metodo y es obligatorio instanciarlo con parentesis despues de el
+
+let next = iterador.next();
+
+while (!next.done) {
+  console.log(next.value);
+  next = iterador.next();
+} */
+
+
+
+//GENERATORS
+/*
+esta es una forma de trabajar de una forma mas amigable con 
+los Iteradores (Iterators), para eso existen los Generators;
+que se usaran en una function normal y corriente pero esta consta de
+unos cuantos detalles diferentes a las functions normales
+*/
+
+//Para JS reconozca una Function como una Function Generadora, tenes que poner un asterisco "*" junto a la declaracion. Nota: está sera un poco similar a las Async Functions p.e: su valor await xd
+/* function* iterable () {
+yield "Hola";                                //Un Yiel es como un return de la funcion, 
+console.log("Hola consola");                                      //cuando este detecte cuando me hayan mandado a llamar con el metodo .next() del iterador
+ yield "Hola2";                                     //aqui se deja el cursor del codigo interno de la funcion, cuando se vuelva a ejecutar 
+ console.log("Y esta mierda sigue p");                                     //un segundo metodo next fuera de la funcion, iria a buscar el siguente Yield y si no lo encuentra este en su propiedad Done devolvera true                                  no entendi ni un carajo
+yield "si";
+yield "que";            
+}
+
+let iterador = iterable(); //Justamente como esto es un generador (por el asterisco de la funcion), podemos acceder a la interfaz donde se encuentran sus datos como cadenas, arreglos, sets, maps; de esta funcion 
+// console.log(iterador.next());
+// console.log(iterador.next());    //Digamos que un generador es el codigo de una funcion convertida a iterable
+
+
+for (let y of iterador) {
+console.log(y)
+}
+
+let arr = [...iterable()];
+console.log(arr);
+
+console.clear();
+
+
+function division2 (valor) {
+setTimeout(() => {
+  return console.log({
+    valor, resultado: valor / 2
+  });
+}, Math.random()*1000+1000)
+}
+
+
+function* generador () {
+  console.log("Inicio de generador de valor a la mitad (Asincrona no bloqueante)");
+ yield division2(0);
+ yield division2(1);
+ yield division2(2);
+ yield division2(3);
+ yield division2(4);
+ yield division2(5);
+ console.log("Final de nuestro generador");
+}
+
+let gen = generador();
+
+for (let y of gen){
+  console.log(y);
+} */
+/* 
+function square (v) {
+setTimeout(() => {
+return console.log({v, result: v*v});
+}, Math.random()*1000 +1000)
+}
+
+
+function* generator () {
+console.log("Start Generator");
+yield square(0);
+yield square(1);
+yield square(2);
+yield square(3); 
+yield square(4); 
+yield square(5); 
+console.log("End Generator");
+}
+
+let gen = generator();
+
+for (let y of gen){
+  console.log(y);
+}
+ */
+
+
+ 
+//PROXIES
+/*
+El Proxie es un nuevo mecanismo de Js que te permite crear un nuevo 
+objeto basado en un objeto literal inicial, muy similar a la 
+POO como las clases, pues las clases es un modelo a seguir y cuando
+tu generas una nueva instancia de esa clase obtiene nuevas caracteristicas.
+Con los Proxies es algo muy similar pero, en lugar de usar clases como modelo a seguir
+vamos a usar un objeto literal, el Proxie va a recibir el objeto literal,
+nos va a generar una copia y a permitir hacer operaciones, validaciones de
+datos y de datos; dentro de la copia que nos esta generando
+del objeto original, es decir que vamos a tener un medio de 
+vinculacion con el objeto original y la nueva instancia que has generado,
+esto se va a administrar dentro de un objeto especial que recibe el Proxie
+que se conoce como Handler o manejador.
+*/
+/* 
+
+const persona = {
+nombre: "",
+apellido: "",
+tula: 0 
+}
+
+const manejador = {
+  set(obj,prop,valor){  //Set va a recibir tres parametros, el objeto como tal, la propiedad y su valor. Esto es para hacer la dichas operaciones y restringir como tal al objeto original para que no sufra cambios
+//Los valores obviamente no se van a poder agregar si no hacemos una operacion de enlazado de datos de la Copia (nueva instancia por así decirlo) del Proxy a el Objeto Original
+
+if(Object.keys(obj).indexOf(prop) === -1){
+return console.error(`La propiedad "${prop}" no existe en tu objeto`);
+}  
+
+if (
+(prop === "nombre" || prop === "apellido") &&
+!(/^[A-Za-z\s]+$/g.test(valor))
+){
+return console.error(`Tu valor "${prop}", no es valido, solo puede tener letras y espacios`)
+}
+
+  obj[prop] = valor;  //La consistencia de esto es que el objeto original(obj) va a reemplazar la propiedad x (prop) por un nuevo valor (valor); de esta manera le agregamos nuevos valores en forma de un Proxy
+}
+}
+
+
+const Tai = new Proxy (persona, manejador);
+
+Tai.nombre = "Taisuru";
+Tai.apellido = "Dmc";
+Tai.tula = 17;
+ //Tai.fb = "carlos ninoMalo"
+
+ console.log(Tai);
+console.log(persona); //Aparte de que Tai es una copia de Persona, estos mantienen una vinculacion (esto es una caracteristica del Proxy de que no mantienen una simple vinculacion como con el metodo ,asign() de los objetos) acá el Proxy hace una vinculacion entre la copia y el objeto original
+
+//Conclusion, el Proxy hace una vinculacion entre el objeto copia y el objeto original
+//Y a traves podemos hacer operaciones como validaciones antes de dar a luz el objeto copia 
+
+ */
+/* 
+const perro = {
+  nombre: "",
+  marca: ""
+}
+
+const manejador = {
+set (obj, prop, valor) {
+
+  if (Object.keys(obj).indexOf(prop) === -1){
+  console.error(`Tu valor "${prop}", no se encuentra en el Objeto p`);
+  }
+
+if (
+(prop === "nombre" || prop === "marca") &&
+!(/^[A-Za-z\s]+$/g.test(valor))
+){
+  return console.error(`Tu valor "${prop}", solo puede conformarse de letras y espacios.`)
+}
+
+obj[prop] = valor;
+}
+}
+
+
+const KeNaI = new Proxy (perro, manejador);
+
+KeNaI.nombre = "KeNaI7367";
+KeNaI.marca = "Apple";
+KeNaI.tula = 17;
+console.log(KeNaI);
+console.log(perro);
+
+ */
+
+
+
+
+
+ //PROPIEDADES DINAMICAS DE LOS OBJETOS
+/*
+Hay veces en las que tenemos que crear cosas dinamicas, como x usuarios
+y tener que nombrarlos por ID1, ID2; sería complicado. Para eso
+tenemos la dinamica en Objetos y lo veremos enseguida.
+*/
+/* 
+let Aleatorio = Math.round(Math.random()*100 + 5);
+const objUsuarios = {
+  propiedad: "Amarillo amarillo amarillo platano",
+[`id_${Aleatorio}`]: "Valor Aleatorio"//Que una propiedad se pueda definir como dinamica, se hace con la sintaxis de los cochetes
+};
+console.log(objUsuarios);
+
+const usuarios = ["Tai", "Lit", "Bianka", "Pov"];
+usuarios.forEach((usuario, index)=> objUsuarios[`id_${index}`] = usuario);
+
+console.log(objUsuarios); */
+
+
+//Esto para que sirve?, esto es para cargar objetos de manera dinamica ola
+
+
+
+
+
+
+
+//THIS
+/*
+Como sabrás this hace referencia a el objeto con el que se esta trabajando.
+En Js nos sirve un poco para eso sin 
+embargo, por que hablamos de los conceptos. 
+ 
+*/
+
+//p.e: cuando mandamos a la consola this imprimirá window xd?
+/* 
+console.log(this);
+console.log(window); //En esta clase esto va a influir bastante
+console.log(this === window); //Esto sera true
+
+
+this.nombre = "Contexto global"
+console.log(this.nombre);
+
+function imprimir () {
+  console.log(this.nombre)
+}
+
+imprimir();
+
+const obj = {
+  nombre: "Contexto Objeto",
+  imprimir: function (){
+console.log(this.nombre);
+  }
+}
+
+obj.imprimir();
+
+const obj2 = {
+nombre: "Contexto Objeto 2",  
+imprimir //Recuerda los shorthands, si es que el nombre de la propiedad y el del valor es el mismo puedes poner solo el valor simplificandolo ^^
+
+//Quiza mi futuro yo leea esto, a lo que vamos, que no esto deberia de imprimir el contexto global si es que la fucion esta delcarada a fuera????
+//No, esto es la simplicacion de la funcion de arriba, solamente que aquí declaramos la funcion directamente yyy
+//el metodo .this hace que el coso que se manda a imprimir se actualize con el objeto que esta dentro de este Object 
+//Esto devolvera el objeto de acá, por que se le esta haciendo contexto con .this refiriendose a esté, creo XD
+
+}
+ //A continuacion un detalle hecho con las Arrow Functions, recuerda que las de arriba son funciones normales
+
+
+
+ const obj3 = {
+  nombre: "Contexto Objeto",
+  imprimir:() => {
+console.log(this.nombre);
+  }   //Bueno acá el detalle, que soluciona y crea conflicto con las Arrow Functions (Y una razon de que no es recomendable usar esto junto a el metodo this.) .
+  // Una Arrow Function hara contexto a el contxto padre ya que no maneja su propia Scope que no tienexd(o bloque) y esto hara que el metodo this. tome el Scope Padre o donde se a creado y dara ese valor no esperado 
+//Es decir, este enlazara el contexto Padre con el Hijo miau (de hecho es similar con los metodos de la segunda clase) 
+//Esta Arrow Function obedecera a el Scope Padre (obviamente estamos hablando si es que se incluye el metodo this.) y ignorara el suyo por que no lo genera a diferencia de las funciones anonimas
+
+
+//Ahora como vemos en este caso la arrow function fue creado en el contexto global pues ignorara su Scope y imprimira el global 
+
+//La arrow function cogera la Scope global mientras que una funcion cogera la Scope de su ambito 
+}
+ */
+//obj3.imprimir(); 
+
+
+//function Persona (nombre){
+  //Esto va con el metodo viejo de abajo, pues crearemos una variable donde guardaremos el this.nombre (dato: antes le nombraban a la variable that, pues ya sabian a que se referian xd)
+  //const that = this;    //Lo que haces aqui es crear una variable donde guardaras el this. para no perder su valor y usarlo en un futuro (por que no habian arrow functions)
+  
+  
+  //that.nombre = nombre;                    //Con lo de abajo, y pues este return esta en esta scope y pues imprimira laa variable por haci decirlo
+//return console.log(this.nombre); //Cuando ejecutamos este console.log directamente nos imprimira su Scope que es "Tai"
+
+//return function () {  //Recuerda que cada funcion crea un Scope salvo las Arrow Function que heredan el contexto del que estan creados, pero, que pasa aqui?
+  // pues function, esta function crea una nueva scope y pues como su metodo esta dentro de esta nueva scope esta Function buscara el valor antes ya declarado que es "Contexto Global" por la razon de que no tiene ninguna variable || valor ("this.nombre") dentro de su Scope y pues imprimira el que esta declarado arriba en lugar de Tai
+  //console.log(this.nombre);
+//}
+
+//Bueno, recuerdas que las Arrow funcition no crean un Scope cierto?
+//Pues la funcion constructora en la que esta es Arrow Function tiene Scope obviamente
+//Y como la Arrow Function no crea una Scope y sigue el contexto de su Padre (en este caso Persona)
+//Pues imprimira aquella Scope que es "Tai", por que no creara otra Scope y ello 
+
+//return () => console.log(this.nombre);   //Esta si es una manera de imprimir un valor de manera no directa haciendo concatenaciones de funciones (una dentro de la otra)
+//Esto devolvera "Tai"
+
+
+
+//Ahora un metodo algo viejo para solucionar esto con las funciones normales
+
+//return function (){
+  //console.log(that.nombre);
+//}
+
+//}
+
+
+// let yo = new Persona("Tai69");
+ // yo();
+
+
+
+
+
+//CALL, APPLY & BIND
+/*
+Bueno, esto serian soluciones a lo ya antes visto con el elemento this,
+gracias al estandar ES5 tenemos estos tres metodos? que nos sirve especialmente para guardar y usar un Scope x  
+call, apply and bind
+*/
+
+//Aplicacion de esto p
+
+console.log(this);  //Cuando imprimes el elemento this, este te arrojara una ventana en la consola
+this.lugar = "Contexto Global"
+
+function saludar (saludo, nombre) {
+console.log(`${saludo} ${nombre} desde el ${this.lugar}`);
+}
+saludar("Hola", "Lit");
+
+const obj = {
+lugar: "Contexto Objeto",
+
+}
+
+//Aqui la solucion Call.
+//En este pues ejecutaras la funcion que tenga el Scope Global, pero con el metodo Call tendras un parametro y ese sera el objeto que tenga su nueva Scope o nuevo this por asi decirlo pwpwpppwpw
+
+saludar.call( obj, "Adios", "Frabi");  //Aca ejecutamos la funcion ya agregandole el Scope de obj (por eso el parametro de call)
+//Y si es que Call no lleva parametro o su valor es nulo pues se ira a la Scope Global xd
+
+
+
+//Solucion Apply, similar a Call pero con unas diferencias que veremos a continuacion
+
+//Como cuando formas una Cadena con templates strings pues acá lo haces como un Arreglo y con el Call no
+
+saludar.apply(obj, ["Chi", "Sejota"])
+
+//saludar.apply(obj, "Chi", "Sejota"); //Aqui la primera diferencia del Call con el Apply. Es cuando llamamos los parametros de la funcion a ejecutar por ejemplo, estos deberan de ir en un Arreglo
+
+
+
+//Metodo Bind
+//Este creara un Enlace, tal cual como su nombre xd
+
+
+//EJemplos de que es una concatenacion de funciones dentro de objetos sin el enlaze
+
+const persona = {
+nombre: "Tai",
+saludar: function () {    //Si esto lo hacemos con una Arrow Funcition, pues nos devolvera un undefined, como lo de arriba xd
+  console.log(`Hola ${this.nombre}`);
+}
+}
+
+persona.saludar();
+
+
+const otraPersona = {
+saludar: persona.saludar.bind(persona) //[2] Correct!
+//saludar: persona.saludar [1]
+}
+otraPersona.saludar(); // [1] Esto nos arrojara un "Hola undefined" pq?, justamente por que no tiene una propiedad nombre y pues imprime Undefined, justo con lo que pasaba con la Arrow Function de arriba (por que esta crea su propio Scope y ello)
+
+//Ahora para que nos arroje lo esperado tendriamos que hacer uso de el Bind, de esta manera
+otraPersona.saludar(); // [2]   Aqui tenemos que tener un parametro, que es el elemento el cual vamos a enlazar, en este caso perosna
+//Lo que hacemos es enlazar el contexto de persona a la llamada de la funcion de la llamada de la funcion de otraPersona. Y pues ahora si nos devolvera "Hola Tai"
+
+
+//Y pues asi funciona el metodo Bind
+
+
+
+
+console.clear();
+
+
+
+
+//JSON
+//Una tecnologia muy importante en el ambito de JS, incluso no solo en Js 
+/*
+Que es JSON? Pronunciado JavaScript Object Notation, o, notacion de objetos Js
+Es un formato ligero de intercambio de datos, es decir, a nosotros como humanos 
+nos es muy facil leer y escribir en formato JSON, y para las maquinas es muy 
+facil interpretarlo, tienes que tomar en cuenta que esto ya es un estandar eh.
+
+Bueno, por lo entendido a un ejemplo de Jhon.
+JSON sirve como un traductor de lenguajes en un proyecto (algo asi) es como si pusieses a una persona que habla chino y otro espanol, no se van a entender y aqui va a interferir el JSON
+p.e: tinenes una pagina e-commerce y al momento de realizar un transaccion tienes a php de interfaz y a phyton para que realize la
+transaccion, pues estos lenguajes no se entienden. Pues php al no tener una manera de comunicarse 
+con phyton, lo que hace es utilizar este formato JSON y como phyton tambien sabe interpretar JSON, pues esto se realizara, y puedes enviar un 
+mensaje de error o de la operacion existosa p.e.
+
+Pues para esto sirve JSON; antes de JSON se usaba un lenguaje de marcado 
+llamado XML y se usaba para esto especialmente; pero con la adopcion de JSON 
+esto se a ido remplazando :'v
+
+
+Actualmente si buscamos un ejemplo de el uso de archivos XML seria el sistema tributario de México
+
+
+JSON no es exclusivo de Js, esto forma parte de varios o muchos lenguajes de programacion, como: C, Perl, PHP, Go, y más. Por eso decimos que es un estandar de intercambio de informacion.
+otra cosa, JSON solo acepta datos como, Objects, Strings, Arrays, Numbers, Booleans (true and false), date null
+
+*/
+
+//A tirar lineas de codigo! 
+/* 
+const json = {
+cadena: "Tai",
+numero: 15,
+booleano: true,
+arreglo: [
+  "Hola",
+  "que",
+  "si"
+],
+objeto: {
+  chi: "pipipipi",
+  no: "a"
+},
+nulo: null
+}
+
+//Para crear un dato en archivo JSON primero tienes que crearlo (obviamentexdddd) en el VSC
+//Y aca hay ciertas reglas, primero que toda instancia de dato JSON tiene que estar con llaves "{}" y sus TODOS valores con SOLO comillas dobles (""), de lo contrario te dara error
+
+//Esto al igual te servira para el Js para el lado del servidor (node.js)
+ 
+//Para usar el JSON hay dos metodos, .parse() & .stringify()
+
+
+
+//.parse()
+
+
+//Lo que va a ser Parse es analizar una notacion JSON, es decir una cadena de texto y la va a convertir a un dato que Js valide como un objeto, cadena, arreglo, boolean etc
+
+//Es decir, va a convertir un dato - objeto de cadena de texto a un valor valido a Js
+console.log("{}");
+console.log("12");
+
+console.log(JSON.parse("{}"));
+console.log(JSON.parse("true"));
+console.log(JSON.parse("[1,2,3]"));
+//console.log(JSON.parse("hola")); //Ojo con esto que, se tiene que ingresar un dato valido para JS, en este caso una string, pero como no esta envuelta de vuelta pues habrá error de sintaxis
+console.log(JSON.parse("null"));
+//console.log(JSON.parse("undefined")); //Aca te arrojara error por que UNDEFINED no es un token valido para js
+
+//Como tenemos un metodo que su funcion es analizar el dato llamado Parse, tenemos otro que hace totalmente lo contrario llamado .stringify()
+
+
+
+//.stringify()
+
+//Lo que hace es convertir un objeto o valor de JS en cadena de texto
+
+console.log(JSON.stringify({}));
+console.log(JSON.stringify([]));
+console.log(JSON.stringify(null));
+console.log(JSON.stringify("si"));
+console.log(JSON.stringify(["hola", "nena"]));
+console.log(JSON.stringify(false));
+console.log(JSON.stringify(true));
+console.log(JSON.stringify({x:2, y:3}));   //Todo esto lo convertira en una notacion JSON
+//Esto imprimido a la consola nos dara obviamente la notacion JSON, y al momento de instanciar una notacion JSON en un archivo JSON tendremos que hacerlo como en este ejemplo xd
+
+//Aqui estamos ejecutando nuestro archivo JSON con el metodo .stringify y tal cual su definicion
+console.log(JSON.stringify(json));
+
+//Aqui estamos ejecutando nuestro archivo JSON con el metodo .parse()
+console.log(JSON.parse('{"cadena": "Tai","numero": 15,"booleano": true,"arreglo": ["Hola","que","si" ],"objeto": {"chi": "pipipipi", "no": "que"},"nulo": null}'));   
+//Para poder encapsular un archivo JSON tienes que encapsularlo en comillas simples ('') y en una sola linea de codigo, de lo contrario habrá errores miau
+
+
+//Estos son los dos metodos que tiene JSON, es Parce que valida una cadena en JSON que te lo devuelve en un formato valido para JS, que lo puedes ocupar aplicar tu programacion x
+//Y stringify que convierte un formato de datos o objetos de JS en JSON, es decir cadena de texto 
+
+//Un ejemplo para dar uso del stringify seria como
+//PHP esta empleado en e-commerce y tiene que enviar datos en formato de JSON pero tienen que estar en formato de cadena de texto, php necesita enviar datos para una transaccion a una api de phyton de una cuenta bancaria, y como estos lenguajes no hay similitud de lenguaje por asi decirlo necesita un traductor, aqui entraria JSON convirtiendo los datos en cadena a un formato valido para phyton (que la interfaz bancaria esta programada en phyton (lo olvide decir xd)), con su metodo especifico para leer un formato JSON obviamente, como JS con el .parce (creo xd) 
+//Y todos los lenguajes de programacion deben de contar con el estandar de JSON, según xd
+//Por que no nos ensenaron mas en como leer archivos JSON aqui? (mas que nada tecnicas xd)
+//Si es que estamos en el Js de los navegadores, tenemos el API de fetch o el API de AJAX y si estamos trabajando del lado del servidor (node.js), con un readfile y listo!
+
+//JSON nos servira tanto como para el frontend y backend jiji
+
+
+ console.log(JSON.parse('{"cadena": "hola nena", "objeto": {"nombre": "Tai", "nulo": null, "verdadero": false}}'));
+ */
+
+
+
+//proximamente  APIs y DOM 
+
+ 
+
+
+</script>    
+    </body>
+</html>

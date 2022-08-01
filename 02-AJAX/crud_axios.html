@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD API REST AXIOS</title>
+  </head>
+  <body>
+    <h1>CRUD API REST AXIOS</h1>
+    <section class="crud">
+      <article>
+        <h2 class="crud-title">Agregar Artista</h2>
+        <form class="crud-form">
+          <input type="text" name="nombre" placeholder="nombre" required />
+          <br />
+          <input
+            type="text"
+            name="cancionfav"
+            placeholder="cancion favorita"
+            required
+          />
+          <br />
+          <input type="submit" value="Enviar" />
+          <input type="hidden" name="id" />
+        </form>
+      </article>
+      <article>
+        <h2>Ver Artistas</h2>
+        <table class="crud-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Canciones-favoritas</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </article>
+    </section>
+    <template id="crud-template">
+      <tr>
+        <td class="name"></td>
+        <td class="cancionfav"></td>
+        <td>
+          <button class="edit">Editar</button>
+          <button class="delete">Eliminar</button>
+        </td>
+      </tr>
+    </template>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const d = document,
+        $table = d.querySelector(".crud-table"),
+        $form = d.querySelector(".crud-form"),
+        $title = d.querySelector(".crud-title"),
+        $template = d.getElementById("crud-template").content,
+        $fragment = d.createDocumentFragment();
+
+      //GET
+      const getAll = async () => {
+        try {
+          let res = await axios.get("http://localhost:5555/artistas"),
+            json = res.data;
+          //Testing
+          console.log(res);
+          console.log(json);
+
+          json.forEach((el) => {
+            //Table
+            $template.querySelector(".name").textContent = el.nombre;
+            $template.querySelector(".cancionfav").textContent = el.cancionfav;
+
+            //Btn edit
+            $template.querySelector(".edit").dataset.id = el.id;
+            $template.querySelector(".edit").dataset.name = el.nombre;
+            $template.querySelector(".edit").dataset.favsong = el.cancionfav;
+
+            //Btn delete
+            $template.querySelector(".delete").dataset.id = el.id;
+            $template.querySelector(".delete").dataset.name = el.nombre;
+
+            let $node = d.importNode($template, true);
+            $fragment.appendChild($node);
+          });
+          $table.querySelector("tbody").appendChild($fragment);
+        } catch (err) {
+          let message = err.statusText || "Ocurrio un Error";
+          $table.insertAdjacentHTML(
+            "afterend",
+            `<p style="background-color: red;"><b>Error ${err.status}: ${message}</b></p>`
+          );
+        }
+      };
+
+      d.addEventListener("DOMContentLoaded", getAll);
+
+      d.addEventListener("submit", async (e) => {
+        if (e.target === $form) {
+          e.preventDefault();
+
+          if (!e.target.id.value) {
+            //POST
+            try {
+              let options = {
+                  method: "POST",
+                  headers: {
+                    "Content-type": "application/json; charset=utf-8",
+                  },
+                  data: JSON.stringify({
+                    nombre: e.target.nombre.value,
+                    cancionfav: e.target.cancionfav.value,
+                  }),
+                },
+                res = await axios("http://localhost:5555/artistas", options),
+                json = await res.data;
+
+              location.reload();
+            } catch (err) {
+              let message = err.statusText || "Ocurrio un error";
+              $form.insertAdjacentHTML(
+                "afterend",
+                `<p style="background-color: red;"><b>Error ${err.status}: ${message}</b></p>`
+              );
+            }
+          } else {
+            //PUT
+            try {
+              let options = {
+                  method: "PUT",
+                  headers: {
+                    "Content-type": "application/json; charset=utf-8",
+                  },
+                  data: JSON.stringify({
+                    nombre: e.target.nombre.value,
+                    cancionfav: e.target.cancionfav.value,
+                  }),
+                },
+                res = await axios(
+                  `http://localhost:5555/artistas/${e.target.id.value}`,
+                  options
+                ),
+                json = await res.data;
+
+              location.reload();
+            } catch (err) {
+              let message = err.statusText || "Ocurrio un Error";
+
+              $form.insertAdjacentHTML(
+                "afterend",
+                `<p style="background-color: red;"><b>Error ${err.status}: ${message}</b></p>`
+              );
+            }
+          }
+        }
+      });
+
+      d.addEventListener("click", async (e) => {
+        if (e.target.matches(".edit")) {
+          $title.textContent = "Editar VideoJuego";
+          $form.nombre.value = e.target.dataset.name;
+          $form.cancionfav.value = e.target.dataset.favsong;
+          $form.id.value = e.target.dataset.id;
+        }
+
+        //DELETE
+        if (e.target.matches(".delete")) {
+          let isDelete = confirm(
+            `Estas seguro de eliminar "${e.target.dataset.name}" con el ID ${e.target.dataset.id}?`
+          );
+          if (isDelete) {
+            try {
+              let options = {
+                  method: "DELETE",
+                  headers: {
+                    "Content-type": "application/json; charset=utf-8",
+                  },
+                },
+                res = await axios(
+                  `http://localhost:5555/artistas/${e.target.dataset.id}`,
+                  options
+                );
+              json = await res.data;
+
+              location.reload();
+            } catch (err) {
+              let message = err.statusText || "Ocurrio un Error";
+
+              alert(`${err.status}: ${message}`);
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

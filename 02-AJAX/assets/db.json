@@ -1,0 +1,56 @@
+{
+  "artistas": [
+    {
+      "id": 3,
+      "nombre": "Bedroom",
+      "cancionfav": "Nothing Lasts"
+    },
+    {
+      "nombre": "Sewerslvt",
+      "cancionfav": "Jvnko Still Loves You",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "nombre": "Joji",
+      "cancionfav": "Gimme Love"
+    },
+    {
+      "nombre": "Roland Faunte",
+      "cancionfav": "Hand over hand",
+      "id": 6
+    },
+    {
+      "nombre": "mi novia es",
+      "cancionfav": "hikari",
+      "id": 7
+    }
+  ],
+  "videojuegos": [
+    {
+      "id": 1,
+      "nombre": "Minecraft",
+      "debido": "Ashley"
+    },
+    {
+      "id": 2,
+      "nombre": "TOTM",
+      "debido": "Karol"
+    },
+    {
+      "id": 3,
+      "nombre": "Arcaea",
+      "debido": "Grievous Lady"
+    },
+    {
+      "nombre": "JS",
+      "debido": "Grasshopper",
+      "id": 4
+    },
+    {
+      "nombre": "Tquieromucho",
+      "debido": "Hikari",
+      "id": 5
+    }
+  ]
+}

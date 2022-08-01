@@ -1,0 +1,15 @@
+{
+    "cadena": "Tai",
+    "numero": 15,
+    "booleano": true,
+    "arreglo": [
+      "Hola",
+      "que",
+      "si"
+    ],
+    "objeto": {
+      "chi": "pipipipi",
+      "no": "que"
+    },
+    "nulo": null
+    }

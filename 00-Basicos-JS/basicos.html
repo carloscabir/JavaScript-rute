@@ -1,0 +1,812 @@
+<html> <head>
+    <p> Ella no te ama pa</p>
+</head>
+ <body>
+     <script>
+        
+        /*console.log("ciclos javascript");
+
+let numeros = [10, 20 ,30, 40, 50, 60, 70,
+     80, 90];
+     
+     for (let i = 0; i < numeros.length; i++){
+         console.log(numeros[i])
+     }
+
+try { 
+    alo;
+    console.log("papu, tenes algo mal, sintaxis")
+} catch (error) {
+    console.log("se produjo un error:", $(error))
+    
+}*/
+/*
+const numeros = [1, 2, 3, 4, 5 , 6, 7, 8, 9, 0];
+
+
+for (let i= 0; i < numeros.length; i++){
+    if (i===5){
+break;
+ }
+    console.log(numeros[i]);
+}
+
+
+
+for (let i = 0; i <numeros.length; i++){
+    
+    if (0 === 5){
+        continue;
+    }
+    console.log(numeros[i]);
+}
+*/
+
+
+
+/*document.write("ella no te ama bro");
+
+
+const yo = {
+    nombre: "Carlito",
+    apellido: "Dmc",
+    edad: 15,
+    novia: "aire"
+};
+
+
+let {nombre, apellido, novia, edad} = yo;
+console.log(nombre, apellido, "novia", " ", "el ",  novia, "edad ", edad);*/
+/*
+const gato = {
+    nombre: "sac",
+    raza: "callejero",
+    color: "amarrilo",
+    sexo: "gato"
+}
+function maullar(){
+    console.log("miau miau");
+}
+
+*/
+/*
+function sumar (a, b, ...c){
+let resultado = a + b;
+
+
+
+c.forEach(function(n){
+    resultado += n
+});
+
+return resultado;
+
+}
+ console.log(sumar(1, 7, 8));
+ console.log(sumar(1, 7, 8, 4));
+ console.log(sumar(1, 7, 8, 4, 10, 30, 50));
+
+
+ let arr1 = [1, 2, 3, 4, 5],
+arr2 = [6, 7, 8, 9, 0];
+
+console.log(arr1, arr2);
+
+const arr3 = [...arr1, ...arr2];
+console.log(arr3);
+*/
+/*
+console.log("Hola pinche putita");
+
+
+
+const sumar = function (a,b){
+return a + b;
+}
+
+
+ console.log(sumar(8,9))
+
+
+
+ const saludar4 =nombre=> console.log(`Hola pinche putita ${nombre}`);
+
+saludar4("Ash");
+
+
+
+const numeros1 = [1,2,3,4,5];
+numeros1.forEach(function (el, index) {
+    console.log(`${el} esta en la posicion
+     ${index}`)
+})
+
+const numeros2 = [6,7,8,9,0];
+numeros2.forEach((el, index) => console.log(`${el} esta en la posicion
+${index}`));
+
+
+
+const gato2 = {
+    nombre: "sac",
+    maullar: () => {
+        console.log(this)
+    }
+}
+
+gato2.maullar()
+*/
+
+
+/*
+const animal = {
+      nombre: "Snoopy",    
+    sonar(){
+console.log("Hago sonidos por que estoy vivo");
+    }
+}
+
+const animal2 = {
+    nombre: "Lola Bunny",    
+  sonar(){
+console.log("Hago sonidos por que estoy vivo");
+  }
+}
+
+console.log(animal);
+console.log(animal2);
+*/
+
+/*
+function Animal(nombre, genero){
+    //Atributos
+    this.nombre = nombre;
+    this.genero = genero;
+}
+
+    //Metodos agregados al prototipo de la funcion constructora
+    Animal.prototype.sonar = function (){
+        console.log("Hago sonidos por que estoy vivo")
+      }
+    
+      Animal.prototype.saludar = function (){
+          console.log(`Hola puta, me llamo ${this.nombre}`)
+      }
+    
+    
+    const snoopy = new Animal("Snoopy", "Macho"),
+    lolaBunny = new Animal("Lola Bunny", "Hembra");
+    
+    console.log(snoopy);
+    console.log(lolaBunny);
+    
+    snoopy.sonar();
+    snoopy.saludar();
+    
+    lolaBunny.sonar();
+    lolaBunny.saludar();
+
+
+*/
+/*
+const animal = {
+      nombre: "Snoopy",    
+    sonar(){
+console.log("Hago sonidos por que estoy vivo");
+    }
+}
+
+const animal2 = {
+    nombre: "Lola Bunny",    
+  sonar(){
+console.log("Hago sonidos por que estoy vivo");
+  }
+}
+
+console.log(animal);
+console.log(animal2);
+*/
+//Termina aqui esto
+
+
+
+
+//Funcion constructora (primera que duplica los resultados ya imprimidosxd)
+/* //INSTANCIA
+function Animal(nombre, genero){
+//Atributos
+this.nombre = nombre;
+this.genero = genero;
+
+//Metodos
+this.sonar = function (){
+    console.log("Hago sonidos por que estoy vivo")
+  }
+
+  this.saludar = function (){
+      console.log(`Hola puta, me llamo ${this.nombre}`)
+  }
+}
+
+const snoopy = new Animal("Snoopy", "Macho"),
+lolaBunny = new Animal("Lola Bunny", "Hembra");
+
+console.log(snoopy);
+console.log(lolaBunny);
+
+snoopy.sonar();
+snoopy.saludar();
+
+lolaBunny.sonar();
+lolaBunny.saludar();
+*/
+/*
+//Funcion constructora donde asignamos los metodos al Prototipo, no a la funcion como tal
+
+function Animal(nombre, genero){
+    //Atributos
+    this.nombre = nombre;
+    this.genero = genero;
+}
+
+    //Metodos agregados al prototipo de la funcion constructora
+    Animal.prototype.sonar = function (){
+        console.log("Hago sonidos por que estoy vivo")
+      }
+    
+      Animal.prototype.saludar = function (){
+          console.log(`Hola puta, me llamo ${this.nombre}`)
+      }
+    
+
+//Herencia Prototipica
+function Perro(nombre, genero, tamanio){
+    this.super = Animal;
+    this.super(nombre, genero);
+this.tamanio = tamanio;
+}
+
+//Perro esta herendando de Animal
+Perro.prototype = new Animal();
+Perro.prototype.constructor = Perro;
+
+
+//Sobreescritura de metodos del Prototipo padre en el hijo
+Perro.prototype.sonar = function (){
+    console.log("soy un perro y mi sonido es un ladrido");
+}
+Perro.prototype.ladrar = function () {
+    console.log("guau guau");
+}
+
+   
+    const snoopy = new Perro("Snoopy", "Macho", "chico"),
+    lolaBunny = new Animal("Lola Bunny", "Hembra");
+    
+    console.log(snoopy);
+    console.log(lolaBunny);
+    
+    snoopy.sonar();
+    snoopy.saludar();
+    snoopy.ladrar();
+    
+    lolaBunny.sonar();
+    lolaBunny.saludar();
+    
+
+*/
+
+
+
+
+
+//OBJETO DATE
+/*Esto servi para obtener el dato que especifiques
+a el parametro, para un coso x*/
+/*
+console.log(Date());
+
+let fecha = new Date();
+console.log(fecha);
+//Dia del mes
+console.log(fecha.getDate());
+//Dia de la semana D L M Mi J V S -> 0 1 2 3 4 5 6 
+console.log(fecha.getDay());
+//Mes del anio Ene Feb Mar Abr May Jun Jul Ago Sep Oct Nov Dic -> 0 1 2 3 4 5 6 7 8 9 10 11
+console.log(fecha.getMonth());
+//Anio 
+console.log(fecha.getFullYear());
+//Hora
+console.log(fecha.getHours());
+//Milisegundos :00
+console.log(fecha.getMilliseconds());
+//Hora local
+console.log(fecha.toLocaleString());
+
+
+//calcular fecha de nacimiento pa
+
+let cumpleCarlito = new Date(2007, 4, 13);
+console.log(cumpleCarlito);
+*/
+
+
+
+//OBJETO MATH /*este sirve para hacer operaciones avanzadas de matematicas como: razones trigonometricas cos sen tan etc*/
+//Metodo .abs, este nos devuelve un valor absoluto de un numero
+//Metodo .ceil, este siempre noos va a redondear un valor al numero entero mayor.
+//Metodo .floor, este hace lo mismo que el de arriba, redondear, pero este lo va a hacer al numero entero mas pequenio que tenga cerca
+//Metodo .round, este nos va a redondear al valor mas cercano, tipo calificaciones de la telesecundaria xd
+// Lo que dije en el primer parrafo, un ejemplo: raiz cuadrada = (metodo sqrt), potencias = (metodo pow)
+//Metodo .sign, este nos dara tres respectivos valores por el numero que vaya despues de el; tipo si es positivo el numero este mandara 1, si es negativo -1 y 0 si es 0 xd
+//Metodo .random, este tomara un numero al azar entre 0 y 1, si queres que sea de 0 a 1000 por ejemplo, solo lo multiplicas por 1000 
+
+
+/*
+
+console.log(Math);
+console.log(Math.PI);
+console.log(Math.abs(-7.8));
+console.log(Math.ceil(7.1));
+console.log(Math.floor(7.9));
+console.log(Math.round(7.3));
+console.log(Math.sqrt(81));
+console.log(Math.pow(5,2)); //primer valor es la base y el segundo la potencia, 5 al cuadrado
+console.log(Math.sign(4));
+console.log(Math.round(Math.random() * 1000));
+
+
+
+
+
+
+*/
+//OPERADORES DE CORTOCIRCUITO
+
+/* 
+Cortocircuito OR - cuando el valor de la izquierda en la expresion 
+siempre pueda validar a true, es el valor que se 
+encargara por defecto
+
+
+Cortocircuito AND - cuando el valor de la izquierda en la expresion
+siempre pueda validar a false, es el valor que se encargara por defecto
+
+*/
+
+
+//Cortocircuito OR ||
+/*
+function saludar (nombre){
+nombre = nombre || "Desconocido";
+    console.log(`Hola ${nombre}`);
+}
+console.log();
+
+saludar("Carlito");
+
+saludar();
+saludar();
+
+console.log("cadena" || "valor de la cadena");
+console.log(true || "valor de la cadena");
+console.log([] || "valor de la cadena");
+console.log({} || "valor de la cadena");
+console.log("cadena" || "valor de la cadena");
+console.log(false || "valor de la cadena");
+console.log(null || "valor de la cadena");
+console.log(undefined|| "valor de la cadena");
+ 
+ 
+ 
+ 
+ //Cortocircuito AND &&
+
+ 
+console.log("cadena" && "valor de la cadena");
+console.log(true && "valor de la cadena");
+console.log([] && "valor de la cadena");
+console.log({} && "valor de la cadena");
+console.log("cadena" && "valor de la cadena");
+console.log(false && "valor de la cadena");
+console.log(null && "valor de la cadena");
+console.log(undefined && "valor de la cadena");
+ */
+
+
+
+
+//ALERT, CONFIRM, PROMPT
+
+//esto nos sirve para interactuar con el usuario en el navegador xd
+/*
+
+ console.log(window);
+
+ //No es necesario agregar un window como inicio para ejecutar esto.
+// alert("Hola esta es una alerta");
+//confirm("Hola esta es una confirmacion");
+//prompt("Hola esta es un aviso y le permite al usuario ingresar un valor");
+
+
+
+
+let alerta = alert("Hola esta es una alerta"),
+confirmacion = confirm("Hola esta es una confirmacion"),
+aviso = prompt("Hola esta es un aviso y le permite al usuario ingresar un valor");
+
+console.log(alerta);
+//Alert no es necesario pasarlo a variable por que su valor en la consola siempre sera Undefined.
+//en cambio los otros dos de esta clase no.
+console.log(confirmacion);
+//El aviso si se le entrega un valor y lo cancelas su valor en la consola sera null (null).
+console.log(aviso);
+
+*/
+
+
+
+
+
+//EXPRESIONES REGULARES
+/*Que son?
+Son una secuencia de caracteres que forman un patron de busqueda,
+principalmente usado para las busquedas de patrones
+de cadenas de caracteres. Esto te puede servir para tipo un correo
+donde para que el remitente en sus datos solo pueda poner datos como letras exeptuando
+a los los caracteres especiales u otra cosa por ejemplo, para esto sirven las 
+expresiones regulares.
+
+
+https://es.wikipedia.org/wiki/Expresi%C3%B3n_regular
+https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions
+*/
+
+/*
+let cadena = "Lorem Sexo ipsum sna anal 4 sexo sexo de perrito en el monte yo que se"
+
+//Primera forma de como llamar una expresion regular
+//let expReg = new RegExp("sexo", "ig"); //Dentro de esto siempre hay una bandera, tipo que le indiques que caracteres reonocer y eso, hay mas arriba en os links que deje arriba siuuuuuuuuu
+
+
+//Segunda forma de como llamar una expresion regular
+let expReg2 = /sexo{1,2}/ig; //(ESTE ES EL FORMATO MAS USADO, recorda un codigo mas limpio y legible va a ser el mejor aca)
+//Hay caracteres especiales que se pueden poner juntos a el metodo para hacer x funcion yo que se
+
+//Metodos que veremos acá, .test y .exec
+
+//El metodo .test solo te enviara un boolean
+//console.log(expReg.test(cadena));
+//El metodo .exec te enviara mas informacion sobre ello, como posicion, palabra buscada etc
+//console.log(expReg.exec(cadena));
+
+console.log(expReg2.test(cadena));
+console.log(expReg2.exec(cadena));
+
+
+ */
+
+
+
+
+
+ //FUNCION ANONIMA AUTOEJECUTABLE
+ /*Esta es casi igual que una funcion normal, pero con 
+ la diferencia de que esta se ejecutara automaticamente.
+ Esta consta así: (function(){});
+ /*
+Esta ira encerrada en parentesis y lo demas es como una funcion normal
+Nota: no es necesario usar tanto los punto y coma pero en estos casos sí, pq?
+es una funcion anonima autoejecutable y si no lo haces, harás una concatenacion de varias fumciones autoejecutables
+y haras un caos en tu codigo (supongo que ya sabes que el punto y como (;) sirve 
+separar tu codigo xd).
+*/
+ 
+//Formas de funciones anonimas autoejecutables 
+/*
+//Clasica
+(function(){
+    console.log("Hola, soy una FAA clasica")
+})();
+
+//La Crockford
+((function(){
+    console.log("Hola, soy una FAA CrockFord")
+}))();
+
+//Unuaria
++function(){
+    console.log("Hola, soy una FAA Unuaria")
+}();
+
+//Facebook
+!function(){
+    console.log("Hola, soy una FAA Facebook")
+}();
+*/
+
+
+
+/*Modulos Import and Export 
+
+Esto que es?, esto es un coso que te ayuda a importar un codigo
+de una ubicacion x, por ejemplo: en una carpeta tenes varios codigos y queres 
+uno en otro nuevo y asi xd
+pues solo usas el metodo? Import y Export, seleccionas la 
+parte de cpdigo que gustes con un Import yyyyy pues en el codigo 
+deseable donde quieras el codigo (aghhhh) pues solo lo
+importas poniendo la ubicacion de este tipo:
+
+
+ Hay una carpeta que tene dos codigos Aritmetica y Modulos (como ejemplo).
+ (los archivos pertenecen a una misma carpeta)
+
+ Aritmetica contiene:
+
+ function sumar (a + b){
+     return a + b
+ };
+
+ function restar (a - b){
+return a - b
+ };
+
+
+Modulos contiene:
+
+Console.log("Bienvenido a modulos, inserta acá el modulo");
+
+
+
+
+//AHORA ESTO MODULOS CON MODULOS
+
+Aritmetica.js contiene:
+
+ export function sumar (a + b){
+     return a + b
+ };
+
+ export function restar (a - b){
+return a - b
+ };
+
+
+Modulos.js contiene:
+
+Console.log("Bienvenido a modulos, inserta acá el modulo");
+
+import {sumas y restar} from "./Aritmetica.js";
+
+console.log (sumar(8,2));
+console.log (restar(12,2));
+
+u o agrupamos o englobamos todo esto a un objeto {}
+
+
+Aritmetica contiene:
+
+ function sumar (a + b){
+     return a + b
+ };
+
+ function restar (a - b){
+return a - b
+ };
+
+
+ export const aritmetica = {
+     sumar,
+     restar
+ };
+
+
+
+Modulos contiene:
+
+Console.log("Bienvenido a modulos, inserta acá el modulo");
+
+(El .js es clave pa)
+
+import {arirtmetica} from "./Aritmetica.js;"
+
+console.log(aritmetica.sumar(8, 2));
+console.log(aritmetica.restar(10, 2));
+
+
+
+*/
+
+
+
+
+
+
+//OBJETO CONSOLE
+
+console.log(console); //Imprimir en la consola
+console.error("Hola, esto es un error"); //Para notificar un error
+console.warn("Esto es un aviso"); //Para notificar una advertencia
+console.info("Hola"); //Para ser informativo similar al .log
+
+
+let nombre = "Taisuru",
+apellido = "anal",
+edad = 10;
+
+console.log(nombre);
+console.log(apellido);
+console.log(edad);
+console.log(nombre, apellido, edad);
+console.log(`Hola mi nombre es ${nombre} ${apellido} y tengo ${edad} anos`);
+
+console.log(`Hola mi nombre es %s %s y tengo %s anos`, nombre, apellido, edad);
+
+console.clear(); //Limpiar la consola
+
+
+
+console.log(document);
+console.dir(window);
+console.dir(document);   //Objetos
+console.clear();
+
+console.group("Cursos de @jonmircha en YouTube")
+console.log("Curso de Js")
+console.log("Curso de Node.js")
+console.log("Curso de Diseno y Programacion Web")
+console.groupEnd();
+
+//Hacer grupos
+console.groupCollapsed("Cursos de @jonmircha en YouTube")
+console.log("Curso de Js")
+console.log("Curso de Node.js")
+console.log("Curso de Diseno y Programacion Web")
+console.groupEnd();
+//Terminar grupos
+
+console.clear();
+//Hacer una tabla xd
+ console.log(console);
+ console.table(Object.entries(console).sort)//.sort sirve para ordenar alfabeticamente xd); //Para pasar datos a una tabla (estetico)
+
+ console.clear();
+
+const numeros = [1, 2, 3, 4, 5],
+vocales = ["a", "e", "i", "o", "u"];
+
+console.table(numeros);
+console.table(vocales);
+
+const perro = {
+nombre: "kenai",
+raza: "chi",
+color: "pene"
+}
+
+console.table(perro);
+console.clear();
+
+//Console.time Ejemplo de como usarlo (cronometrando a milisegundos)
+console.time("Cuanto tiempo tarda mi codigo");
+const arreglo = Array(1000);
+
+for (i = 0; i < arreglo.length; i ++) {
+    arreglo[i] = i; 
+}
+
+console.timeEnd("Cuanto tiempo tarda mi codigo");
+//console.log(arreglo);
+console.clear();
+
+//Metodo Count (Tal cual como el nombre para hacer conteos xd)
+
+for (let i = 0; i <= 100; i++){
+    console.count("codigo for");
+    console.log(i);
+}
+console.clear();
+
+
+//Metodo .assert, este sirve para hacer comparaciones entre variables (creo xd)
+
+let x = 4,
+y = 3,
+pruebXY = "Se espera que x siempre sea menor a y";
+
+console.assert(x <= y,{x,y,pruebXY});
+//Si la condicion es correcta no se imprimira nada en la consola, en cambio si no lo es, si lo hará.
+
+console.clear();
+
+
+
+
+let age = 17
+const podesPasar = (age >= 18) 
+? "eres mayor de edad"
+: "eres menor de edad"
+console.log(podesPasar);
+
+console.clear();
+
+
+
+//MEtodo .IndexOf
+
+
+const actualizacionDeMiListaDeLenguajes = (lenguajes, lenguaje) => {
+
+    if (lenguajes.indexOf(lenguaje)=== -1) {
+lenguajes.push(lenguaje);
+console.log("La nueva lista de lenguajes es + lenguajes");
+ } 
+   else if (lenguajes.indexOf(lenguaje) > -1) {
+       console.log(lenguaje + ", este lenguaje ya existe en tu lista"); 
+ } 
+ console.table(lenguajes);
+}
+
+actualizacionDeMiListaDeLenguajes(["Js", "Py", "C", "C++", "Go", "Node.Js"], "Node.Js");
+
+console.clear();
+
+
+const suficientementeGrande = (numeros) => {
+if (numeros === undefined) return console.error("No se puede poner un valor vacio acá");
+
+if (!(numeros instanceof Array)) return console.error("No se pueden ingresar otros datos exepto a un Arreglo")
+/* 
+for (let onlyNumber of numeros) {
+    if (typeof onlyNumber !== "number") return console.warn("En este arrglo solo se pueden insertar numeros");
+} */
+ 
+return numeros >= 10; 
+}
+
+suficientementeGrande([1,2,3,4,5,10,11]);
+
+let filtracion = [1,2,3,5,89].filter(suficientementeGrande);
+
+
+
+console.log(filtracion);
+
+console.clear();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </script>
+  </body>
+
+</html>

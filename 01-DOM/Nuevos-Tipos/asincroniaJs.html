@@ -1,0 +1,415 @@
+<html>
+
+    <head>
+<h1> Asíncronia en JavaScript
+    dou
+</h1>
+<title>Asíncronia en JavaScript</title>
+    </head>
+
+<body>
+<script>
+
+
+   //Temporizadores (setTimeout(() => {}),tiempo(expresado en milisegundos))
+
+
+
+   /* console.info("Inicio"); 
+
+   setTimeout(() => {
+console.log("Este es un temporizador Timeout, esto aparecera despues de 2 segundos y solo se ejecuta una vez");
+},2000); //Este solo se ejecuta una vez en el tiempo que tu le indiques.
+
+
+//setinterval((() => {}), tiempo) //Este se ejecutara indefinidamente cada intervalo de tiempo que tu le indiques.
+
+setInteral(() => {
+console.log("Este es un temporizador Interval, esto aparecera despues de 2 segundos indefinidamente (infinito)");
+},2000);
+ */
+
+/* 
+ let temporizador = setTimeout(() => {
+     console.info(new Date().toLocaleTimeString);
+ },1000);
+
+ //No se puede limpiar un setTimeout sin que este este almacenado a una variable
+clearTimeout(temporizador);
+
+console.info("Despues del clearTimeout") //Por que solo imprime esto?, cada que se ejecute (obviamente se va a ejecutar una sola vez) lo va a borrar el clear
+ */
+
+
+let temporizador = setInterval(() => {
+     console.log(new Date().toLocaleTimeString);
+ },1000);
+
+ //No se puede limpiar un setInterval sin que este este almacenado a una variable
+clearInterval(temporizador);
+
+console.info("Despues del clearInterval") //Por que solo imprime esto?, cada que se ejecute lo va a borrar el clear
+
+console.clear();
+
+
+
+
+
+
+
+// La Asincronía y el Event Loop
+/*
+Procesamiento Single thread y Multi thread.
+Operaciones de CPU y Operaaciones de I / O.
+Operciones Concurrentes y Paralelas.
+Operaciones Bloqueantes y No Bloqueantes.
+Operaciones Síncronas y Asíncronas.
+
+
+JavaScript usa un modelo asíncrono y no bloqueante,
+con un loop de eventos implementando en un solo
+hilo, (single thread) para operaciones de entrada y
+salida (input / output).
+
+
+
+*/
+
+//Hay un paradigama que deci, "El ultimo en entrar, es el primero en salir"
+//Y se vera en los codigos Asíncronos xd
+
+/*Codigo Síncrono Bloqueante*/
+/*P.e
+Cada operacion se hace de una vez bloqueando
+ el flujo del hilo principal, este hilo queda bloqueado
+ mientras espera la respuesta, cuando este se procese pasa a la
+ siguente operacion y así sucesivamente hasta pasar todas
+ las operaciones. */
+/* 
+(() => {
+console.log("Codigo Síncrono");
+console.log("Inicio")
+
+function dos (){
+console.log("Dos");
+}
+
+function uno (){
+console.log("Uno");
+dos();
+console.log("Tres");
+}
+
+uno();
+console.log("Fin")
+
+})(); */
+
+//Herramienta para correr tu codigo con pausas p
+//Loupe
+
+/*Codigo Asíncrono No Bloqueante*/
+/*Este hara las peticiones al servidor y si es que el 
+codigo es Asíncrono, va a tener en el codigo un loader por ejemplo, 
+para que carguen dichas cosas.
+En los codigos Asíncronos usualmente contienen un Timeout
+para que se ejecute un codigo x
+Estos se guardaran en la lista de tareas Asíncronas (segundo plano), 
+y optara en hacer lo demas (creo xddddddd */
+/* 
+(() => {
+    console.log("Codigo Asíncrono");
+console.log("Inicio")
+
+function dos (){
+setTimeout(function () {
+    console.log("Dos");
+},1000);
+}
+
+function uno (){
+setTimeout(function () {
+   console.log("Uno"); 
+},0); //Este pareciese que se va a ejecutar de inmediato, pero no. Por que este tiene un setTimeout, esto hara que este codigo se almacene en la pila de tareas (sin importar el intervalo, solo por el setTimeout xd)y se ejecutara despues de Tres y Fin.
+dos();
+console.log("Tres");
+}
+
+uno();
+console.log("Fin"); */
+
+//Esto aplicara el paradigma por el codigo Asíncrono y pues las ejecutara al ultimo, ejecutando primero las ultimas peticiones que 
+//Esto sirve tanto como del lado cliente (navegadores) y del lado servidor (node.js) miau
+
+//CABE ACLARAR QUE HAY VARIAS FORMAS DE HACER UN CODIGO ASIÍCRONO y esta es una forma de ellas uwu
+
+/* 
+})();
+console.clear();
+ */
+
+
+//CALLBACK 
+/*
+Callback, esto sirve para hacer codigo Asíncrono, pero este 
+ se va a poder controlar gracias a las callbacks, no como 
+ el anterior visto xd (callback no sera nuestro mejor aliado para depurar errores)
+ p.e: un codigo que devuelva datos con un setTimeout
+ diferente con diferente intervalo de tiempo en cada uno 
+ creando el famoso callbackHell 
+ */ 
+/* 
+function cuadradoCallback (value, callback){
+setTimeout(() => {
+    callback(value, value*value);
+ }, 0 | Math.random()* 1000);
+}
+
+cuadradoCallback(0,(value, result) => {
+console.log("Inicia Callback");
+console.log(`Callback ${value}, ${result}`);
+ cuadradoCallback(1,(value, result) => {
+ console.log(`Callback ${value}, ${result}`);
+  cuadradoCallback(2,(value, result) => {
+  console.log(`Callback ${value}, ${result}`);
+   cuadradoCallback(3,(value, result) => {
+   console.log(`Callback ${value}, ${result}`);
+   });
+  }); 
+ });  
+});
+  */
+
+
+/* 
+  function divisionCallBack (value, callback) {
+    setTimeout(() => {
+    callback(value, value / 2)
+    }, 0 | Math.random()*1000)
+  };
+
+  divisionCallBack(10, (value, result) => {
+  console.log("Inicia Callback");
+  console.log(`Tu callback: ${value}. ${result}`);
+   divisionCallBack(30, (value, result) => {
+   console.log(`Tu callback: ${value}. ${result}`);
+    divisionCallBack(15, (value, result) => {
+    console.log(`Tu callback: ${value}. ${result}`);
+  }); 
+ });
+}); */
+
+/* 
+
+//PROMESAS 
+//estas en verdad convienen cuando tenemos que concatenar varios procesos asíncronos
+function cuadradoPromise (value){ 
+    if (typeof value !== "number") 
+    return Promise.reject
+    (`Error, el valor ${value} ingresado no es un numero`);
+
+return new Promise((resolve, reject) => {  //Then vendria siendo como el valor positivo y reject como el negativo
+    setTimeout(() => {
+    resolve({
+     value,
+     result: value * value
+    });
+ }, 0 | Math.random()* 1000);
+});
+}
+//aprendiendo promesas que nunca cumplio mi ex :,v
+cuadradoPromise(5)
+.then(obj => {
+//console.log(obj);
+console.log("Inicio Promise");
+console.log(`Promise ${obj.value}, ${obj.result}`);
+return cuadradoPromise(2);
+})
+.then(obj => {
+ console.log(`Promise ${obj.value}, ${obj.result}`);
+ return cuadradoPromise("3");
+})
+.then(obj => {
+console.log(`Promise ${obj.value}, ${obj.result}`);
+setTimeout(()=>{
+     console.log("Final Promise")
+ }, 0 | Math.random()*1000+4000);
+}) //Si queires capturar un error, aqui no tendras que hacerlo en cada una de las callbacks, en las Promesas con el mecanismo ya mencionado ".catch()", este lo hara p.e : una validacion con condicionales
+.catch(err => console.error(err));
+ *//*
+NOTA: cuando ejecuta catch (error usualmente), desde donde se ejecute la promesa dejara de funcionar pe.
+ejecutas una promesa con 5 concatenaciones y hay un error en la segunda 
+concatenacion, el catch saldra en esa concatenacion y 
+dejara de ejecutar el resto de la promesa (3,4,5 concatenacion)
+ */
+/* 
+function numeroDivididoPromise (value){
+if (typeof value !== "number")
+return Promise.reject
+(`El valor ${value}, no es un numero.`);
+
+return new Promise ((resolve, reject) => {
+setTimeout(() => {
+   resolve({
+   value,
+   result: value / 2
+  });
+}, 0 | Math.random()*100);
+})
+}
+
+numeroDivididoPromise(100)
+.then(obj => {
+console.log("Inicio Promise");
+console.log(`Numero a la mitad ${obj.value} e ${obj.result}`);
+return numeroDivididoPromise(190);
+})
+.then(obj => {
+console.log(`Numero a la mitad ${obj.value} e ${obj.result}`);
+return numeroDivididoPromise(80);
+})
+.then(obj => {
+console.log(`Numero a la mitad ${obj.value} e ${obj.result}`);
+setTimeout(() => {
+console.log("Final Promise")
+}, 0 | Math.random()*1000+4000)
+})
+.catch(err => console.error(err));
+ */
+
+
+
+
+
+//FUNCIONES ASINCRONAS, algo que se cumpla para seguir un proceso xd? 
+//Son diferentes a las Promesas, pero estas de hecho trabajan en conjunto
+
+
+/*
+con estas puedes tener un codigo a base de una variable x e ir actualizandola
+para adquirir el dato que gustes, sin tener que hacer concatenaciones como con las dos anteriores
+
+si
+*/
+/* function cuadradoPromise (value){ 
+    if (typeof value !== "number") 
+    return Promise.reject
+    (`Error, el valor ${value} ingresado no es un numero`);
+
+return new Promise((resolve, reject) => { 
+    setTimeout(() => {
+    resolve({
+     value,
+     result: value * value
+    });
+ }, 0 | Math.random()* 1000);
+});
+}
+
+//Si es que olvidas declarar la funcion como asíncrona, te devolvera un error de sintaxis acompanado con "solo se pueden usar awaits en una async function"
+async function funcionAsincronaDeclarada () {
+try {
+    console.log("Inicio Async Function");
+
+let obj = await cuadradoPromise(0);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise(1);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise(2);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise("3");
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise(4);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise(5);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+} catch (err) {
+    console.error(err);
+}
+}
+funcionAsincronaDeclarada();
+
+const funcionAsincronaExpresada = async() => {
+    try {
+    console.log("Inicio Async Function");
+
+let obj = await cuadradoPromise(6);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise(7);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise(8);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise(9);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise("10");
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+obj = await cuadradoPromise(11);
+console.log(`Async Function: ${obj.value}, ${obj.result}`);
+
+console.log("Final Async Function");
+} catch (err) {
+    console.error(err);
+}
+} 
+
+funcionAsincronaExpresada(); */
+
+function numeroDivididoAsyncFunction (value){
+if (typeof value !== "number") 
+return Promise.reject 
+(`El valor ingresado ${value}, no es un numero`);
+
+    return new Promise ((resolve, reject) => {
+    setTimeout(() => {
+    resolve({
+    value,
+    result: value / 2
+    });
+    }, 0 | Math.random()*1000);
+    });
+}
+
+const asyncFunction = async () =>{
+try {
+    console.log("Inicio de Funcion Asíncrona miau");
+ 
+    let obj = await numeroDivididoAsyncFunction(20);
+    console.log(`Numero ${obj.value} entre dos = ${obj.result}`);
+
+    
+    obj = await numeroDivididoAsyncFunction(2);
+    console.log(`Numero ${obj.value} entre dos = ${obj.result}`);
+
+    
+    obj = await numeroDivididoAsyncFunction(3);
+    console.log(`Numero ${obj.value} entre dos = ${obj.result}`);
+
+    setTimeout(() => {
+     console.log("Estoy pensando, en amarte una vez más");
+    }, 0 | Math.random()*1000 + 4000)
+   
+} catch (err) {
+    console.error(err);
+}
+} 
+
+asyncFunction();
+
+
+
+</script>
+</body>
+
+</html>
