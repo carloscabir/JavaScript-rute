@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="icon" content="/files/Sewerslvt - Jvnko Still Loves You(360P).mp4">
+  <title>Blog con Markdown y Showdown</title>
+</head>
+
+<body>
+  <h1>Blog con Markdown y Showdown</h1>
+  <main></main>
+  <audio src="./files/Sewerslvt - Jvnko Still Loves You(360P).mp4" controls></audio>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
+  <script>
+    const d = document,
+      $main = d.querySelector("main");
+
+    fetch("assets/blog.md")
+      .then(res => res.ok ? res.text() : Promise.reject(res))
+      .then(text => {
+        console.log(text)
+
+        $main.innerHTML = new showdown.Converter().makeHtml(text)
+      })
+      .catch(err => {
+        console.log(err)
+        let message = err.statusText || "Ocurrio un Error";
+
+        $main.innerHTML = `<h1>Error ${err.status}: ${message}</h1>`
+      })
+  </script>
+</body>
+
+</html>

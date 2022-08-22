@@ -63,47 +63,10 @@ function contactFormValidations() {
 
     $loader.classList.remove("none");
 
-    /*   (async () => {
-      try {
-        let res = await fetch(
-          ` https://formsubmit.co/ajax/${$inputSubmit.dataset.email}`,
-          {
-            method: "POST",
-            body: new FormData(e.target),
-          }
-        ),
-          json = await res.json();
-
-        if (!res.ok) throw { status: res.status, statusText: res.statusText };
-
-        if (res.ok) {
-          $loader.classList.add("none");
-
-          $response.innerHTML(`${json.message || json.responseText} `);
-          $response.classList.remove("none");
-
-       
-        }
-      } catch (err) {
-        let message = err.statusText || "Ocurrio un Error";
-
-        $response.innerHTML = `<p><b>Error ${err.status}: ${message}</b></p>`;
-        $response.classList.remove("none");
-
-      }
-      finally (() => { 
-           setTimeout(() => {
-            $loader.classList.add("none");
-            $response.classList.add("none");
-            $response.innerHTML = "";
-          }, 5000);
-      })
-    })();
- */
-
-    fetch(` https://formsubmit.co/ajax/${$inputSubmit.dataset.email}`, {
+    fetch("assets/send_mail.php", {
       method: "POST",
       body: new FormData(e.target),
+      mode: "cors", //Tenemos que activar el CORS para la informacion cruzada xd
     })
       .then((res) => (res.ok ? res.json() : Promise.reject(res)))
       .then((json) => {
