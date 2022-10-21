@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reactividad Estado</title>
+    <style>
+      html {
+        box-sizing: border-box;
+        font-size: 16px;
+        font-family: sans-serif;
+        background-color: #222;
+        color: aliceblue;
+      }
+
+      *,
+      *:after,
+      *::before {
+        box-sizing: inherit;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 300px;
+      }
+
+      .container {
+        margin: 0 auto;
+        padding: 2rem;
+        font-size: 115%;
+      }
+
+      .todo-title {
+        font-size: 3rem;
+        display: inline-block;
+        background-color: thistle;
+        border-radius: 0.5rem;
+        padding: 2rem;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reactividad Estado</h1>
+    <div class="container">
+      <h2 class="todo-title">Todo-list</h2>
+      <form id="todo-form">
+        <input
+          type="text"
+          id="todo-item"
+          required
+          placeholder="Tarea por hacer..."
+          autocomplete="off"
+        />
+        <input type="submit" value="Enviar" />
+      </form>
+      <h2>Lista de Tareas</h2>
+      <ul id="todo-list"></ul>
+    </div>
+    <script>
+      const d = document;
+
+      //State
+      let state = {
+        todoList: [],
+      };
+
+      //Template UI
+      const template = () => {
+        if (state.todoList.length < 1) {
+          return `<li><em>Sin tareas por hacer</em></li>`;
+        }
+
+        let todos = state.todoList.map((el) => `<li>${el}</li>`).join("");
+
+        return todos;
+      };
+
+      //Render UI
+      const render = () => {
+        console.log(state);
+        let $list = d.getElementById("todo-list");
+
+        if (!$list) return;
+
+        $list.innerHTML = template();
+      };
+
+      //Reactive State Update
+      const setState = (obj) => {
+        for (key in obj) {
+          if (state.hasOwnProperty(key));
+          state[key] = obj[key];
+        }
+
+        render();
+      };
+
+      d.addEventListener("DOMContentLoaded", render);
+
+      setState({
+        todoList: [],
+      });
+
+      d.addEventListener("submit", (e) => {
+        if (!e.target.matches("#todo-form")) return;
+
+        e.preventDefault();
+
+        let $item = d.getElementById("todo-item");
+        if (!$item) return;
+
+        state.todoList.push($item.value);
+        render();
+
+        // Input cleaner
+        $item.value = "";
+        $item.focus();
+      });
+    </script>
+  </body>
+</html>

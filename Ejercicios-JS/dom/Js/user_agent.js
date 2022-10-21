@@ -53,7 +53,7 @@ export default function userDeviceInfo(id) {
     <br>
     <br>
      <p>Tierrita Mojada - Ed Maverick.. Solo en Chrome</p>
-    <audio src="/CursoJavaScript/Ejercicios Js/dom/assets/tierrita_mojada.mp3" controls></audio>`;
+    <audio src="assets/tierrita_mojada.mp3" controls></audio>`;
   }
 
   if (isBrowser.firefox()) {
@@ -61,7 +61,7 @@ export default function userDeviceInfo(id) {
     <br>
     <br> 
     <p>A mí - Ed Maverick.. Solo en FireFox</p>
-    <audio src="/CursoJavaScript/Ejercicios Js/dom/assets/ami.mp3" controls></audio>  
+    <audio src="assets/ami.mp3" controls></audio>  
     `;
   }
 

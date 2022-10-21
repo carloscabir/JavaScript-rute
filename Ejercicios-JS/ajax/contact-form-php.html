@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Envio de formulario con Fetch y PHP</title>
+    <link rel="stylesheet" href="assets/envio_formulario.css" />
+  </head>
+  <body>
+    <main class="main">
+      <section class="section" data-scroll-spy>
+        <h2>Envio de formulario con Fetch y PHP</h2>
+        <form class="contact-form" method="POST" target="_blank">
+          <legend>Evianos tus comentarios!</legend>
+          <input
+            type="text"
+            name="name"
+            placeholder="Inserta tu nombre"
+            title="Nombre solo acepta letras y espacios en blanco"
+            pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+            required
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Inserta tu Email"
+            title="Correo electronico invalido"
+            pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+            required
+          />
+
+          <input
+            type="text"
+            name="subject"
+            placeholder="Asunto a tratar"
+            title="El asunto es requerido"
+            required
+          />
+          <textarea
+            name="comments"
+            cols="30"
+            rows="10"
+            placeholder="Escribe tus comentarios!"
+            data-pattern="^.{1,255}$"
+            title="Tu comentario no debe de exeder los 255 caracteres"
+            required
+          ></textarea>
+          <input type="file" name="file" multiple />
+          <input type="submit" value="Enviar" />
+          <div class="contact-form-loader none">
+            <img src="assets/hearts.svg" alt="Loader" />
+          </div>
+          <div class="contact-form-response none"></div>
+        </form>
+      </section>
+    </main>
+    <script src="assets/validaciones_formularios_php.js"></script>
+  </body>
+</html>

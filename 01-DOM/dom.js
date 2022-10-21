@@ -1049,7 +1049,7 @@ if(e.target.matches(".eventos-flujo a")){
 //});//Esto en react en el ciclo de eventos de los componentes esto es como todos los eventos que se ejecutan cuando se monta el componente, o en la fase del desmontaje
 //---});
 
-//Esto en el JS vanilla, y quieres hacer que el event hangler se ejecute una sola vez sin importar los elementos, podrias hacer uso de estos metodos.
+//Esto en el JS vanilla, y quieres hacer que el event handler se ejecute una sola vez sin importar los elementos, podrias hacer uso de estos metodos.
 
 //Ahora explicado el ejemplo dos (hecho en la misma funcion)
 //Cuando se hace el evento del evento 1, pues nos devuelve lo esperado como tal (Hola te saluda uno, el click lo origino uno)
